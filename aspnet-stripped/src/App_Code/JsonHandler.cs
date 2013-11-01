@@ -1,5 +1,5 @@
 using System.Web;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 public class JsonHandler : IHttpHandler
 {
@@ -12,6 +12,6 @@ public class JsonHandler : IHttpHandler
     {
         HttpResponse response = context.Response;
         response.ContentType = "application/json";
-        response.Write(new JavaScriptSerializer().Serialize(new { message = "Hello, World!" }));
+        response.Write(JsonConvert.SerializeObject(new { message = "Hello, World!" }));
     }
 }

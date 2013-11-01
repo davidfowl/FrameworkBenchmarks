@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
-
-using MongoDB.Driver.Builders;
-
 using Benchmarks.AspNet.Models;
+using MongoDB.Driver.Builders;
+using Newtonsoft.Json;
 
 public class MongoDBDbHandler : IHttpHandler
 {
@@ -33,7 +31,7 @@ public class MongoDBDbHandler : IHttpHandler
 
         HttpResponse response = context.Response;
         response.ContentType = "application/json";
-        response.Write(new JavaScriptSerializer().Serialize(
+        response.Write(JsonConvert.SerializeObject(
             worlds.Count > 1 ? (Object)worlds : (Object)worlds[0]));
     }
 }
@@ -88,7 +86,7 @@ public class MongoDBUpdatesHandler : IHttpHandler
 
         HttpResponse response = context.Response;
         response.ContentType = "application/json";
-        response.Write(new JavaScriptSerializer().Serialize(
+        response.Write(JsonConvert.SerializeObject(
             worlds.Count > 1 ? (Object)worlds : (Object)worlds[0]));
     }
 }

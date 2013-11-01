@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Data.Common;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Script.Serialization;
 
 using Benchmarks.AspNet.Models;
+using Newtonsoft.Json;
 
 public class UpdatesHandler : IHttpHandler
 {
@@ -82,7 +78,7 @@ public class UpdatesHandler : IHttpHandler
 
         HttpResponse response = context.Response;
         response.ContentType = "application/json";
-        response.Write(new JavaScriptSerializer().Serialize(
+        response.Write(JsonConvert.SerializeObject(
             worlds.Count > 1 ? (Object)worlds : (Object)worlds[0]));
     }
 }

@@ -1,5 +1,4 @@
 using System.Web;
-using System.Web.Script.Serialization;
 
 public class PlaintextHandler : IHttpHandler
 {
