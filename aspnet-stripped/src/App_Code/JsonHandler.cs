@@ -1,3 +1,4 @@
+using System.IO;
 using System.Web;
 using Newtonsoft.Json;
 
@@ -12,6 +13,11 @@ public class JsonHandler : IHttpHandler
     {
         HttpResponse response = context.Response;
         response.ContentType = "application/json";
-        response.Write(JsonConvert.SerializeObject(new { message = "Hello, World!" }));
+
+        var jsonTextWriter = new JsonTextWriter(context.Response.Output);
+        jsonTextWriter.WriteStartObject();
+        jsonTextWriter.WritePropertyName("message");
+        jsonTextWriter.WriteValue("Hello, world");
+        jsonTextWriter.WriteEndObject();
     }
 }
